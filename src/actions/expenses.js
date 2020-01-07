@@ -18,7 +18,7 @@ export const addExpense = (
     }
 });
 
-export const removeOption = ({ id } = {}) =>({
+export const removeExpense = ({ id } = {}) =>({
     type: 'REMOVE_EXPENSE',
     id
 });

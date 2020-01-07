@@ -13,13 +13,9 @@ import getVisibleExpenses from './selectors/expenses';
 
 const store = configureStore();
 
-store.dispatch(addExpense({description: 'Rent', amount: 200, createdAt: 1000}));
-store.dispatch(addExpense({description: 'Tea', amount: 300, createdAt: -1000}));
-
-store.dispatch(setTextFilter('rent'));
-
-const state = store.getState();
-console.log(getVisibleExpenses(state.expenses, state.filters));
+store.dispatch(addExpense({description: 'Rent', amount: 200, createdAt: 5}));
+store.dispatch(addExpense({description: 'Tea', amount: 500, createdAt: -1000}));
+store.dispatch(addExpense({description: 'Water', amount: 400, createdAt: 1000}));
 
 const jsx = (
     <Provider store={store}>
