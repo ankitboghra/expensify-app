@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch, Link, NavLink } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, NavLink } from 'react-router-dom';
 
 import ExpenseDashboardPage from '../components/ExpenseDashboard';
 import AddExpensePage from '../components/AddExpensePage';
@@ -20,7 +20,7 @@ const Header = () => (
 const AppRouter = () => (
     <BrowserRouter>
         <div>
-        <Header />
+            <Header />
             <Switch>
                 <Route path="/" component={ExpenseDashboardPage} exact/>
                 <Route path="/create" component={AddExpensePage}/>
