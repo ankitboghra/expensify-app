@@ -29,7 +29,7 @@ const AppRouter = () => (
                 <Route component={NotFoundPage}/>
             </Switch>
         </div>
-        </BrowserRouter>
+    </BrowserRouter>
 );
 
 export default AppRouter;
