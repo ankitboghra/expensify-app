@@ -117,3 +117,22 @@ database.ref('expenses').push({
   amount: 60000,
   createdAt: 789456
 });
+
+// Fetching the list of data
+
+database.ref('expenses').once('value')
+  .then((snapshot) => {
+    const expenses = [];
+
+    snapshot.forEach((childSnapshot) => {
+      expenses.push({
+        id: childSnapshot.key,
+        ...childSnapshot.val()
+      });
+    });
+
+    console.log(expenses);
+  })
+  .catch((e) => {
+    console.log('Something went wrong while fetching data, ', e);
+  });
