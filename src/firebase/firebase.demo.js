@@ -120,6 +120,7 @@ database.ref('expenses').push({
 
 // Fetching the list of data
 
+// Way 1, by value
 database.ref('expenses').once('value')
   .then((snapshot) => {
     const expenses = [];
@@ -136,3 +137,32 @@ database.ref('expenses').once('value')
   .catch((e) => {
     console.log('Something went wrong while fetching data, ', e);
   });
+
+  // Fetching data with subscription
+  database.ref('expenses').on('value', (snapshot) => {
+    const expenses = [];
+  
+    snapshot.forEach((childSnapshot) => {
+      expenses.push({
+        id: childSnapshot.key,
+        ...childSnapshot.val()
+      });
+    });
+  
+    console.log('Hello');
+  });
+
+// Way 2, by child_removed
+database.ref('expenses').on('child_removed', (snapshot) => {
+  console.log('Expense deleted', snapshot.key, snapshot.val());
+});
+
+// Way 3. by child_changed
+database.ref('expenses').on('child_changed', (snapshot) => {
+  console.log('Expense modified', snapshot.key, snapshot.val());
+});
+
+// Way 4. by child_added
+database.ref('expenses').on('child_added', (snapshot) => {
+  console.log('Expense added', snapshot.key, snapshot.val());
+});
