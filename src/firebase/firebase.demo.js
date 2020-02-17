@@ -89,4 +89,31 @@ const firebaseConfig = {
   setTimeout(() => {
     database.ref().off('value', onValueChange);
   }, 3500);
-  
+
+
+// Working with arrays/list of data
+// Since firebase do not support array
+
+// Clearing data
+database.ref().set(null); 
+
+database.ref('expenses').push({
+  description: 'For the month of January',
+  note: 'Rent',
+  amount: 12500,
+  createdAt: 123456
+});
+
+database.ref('expenses').push({
+  description: 'For Dad',
+  note: 'Mobile Recharge',
+  amount: 699,
+  createdAt: 456789
+});
+
+database.ref('expenses').push({
+  description: 'iPhone 6s',
+  note: 'Phone',
+  amount: 60000,
+  createdAt: 789456
+});
