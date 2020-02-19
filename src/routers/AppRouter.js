@@ -1,32 +1,26 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch, NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import ExpenseDashboardPage from '../components/ExpenseDashboard';
 import AddExpensePage from '../components/AddExpensePage';
 import EditExpensePage from '../components/EditExpensePage';
 import HelpPage from '../components/HelpPage';
 import NotFoundPage from '../components/NotFoundPage';
-
-const Header = () => (
-    <header>
-        <h1>Expensify</h1>
-        <NavLink to="/" activeClassName="is-active" exact>Dashboard</NavLink>
-        <NavLink to="/create" activeClassName="is-active">Create Expense</NavLink>
-        <NavLink to="/edit" activeClassName="is-active">Edit Expense</NavLink>
-        <NavLink to="/help" activeClassName="is-active">Help</NavLink>
-    </header>
-);
+import LoginPage from '../components/LoginPage';
+import Header from '../components/Header';
 
 const AppRouter = () => (
     <BrowserRouter>
         <div>
             <Header />
             <Switch>
-                <Route path="/" component={ExpenseDashboardPage} exact/>
-                <Route path="/create" component={AddExpensePage}/>
-                <Route path="/edit" component={EditExpensePage}/>
-                <Route path="/help" component={HelpPage}/>
-                <Route component={NotFoundPage}/>
+                <Route path="/" component={LoginPage} exact/>
+                <Route path="/dashboard" component={ExpenseDashboardPage} />
+                <Route path="/create" component={AddExpensePage} />
+                <Route path="/edit" component={EditExpensePage} />
+                <Route path="/help" component={HelpPage} />
+                <Route component={NotFoundPage} />
             </Switch>
         </div>
     </BrowserRouter>
