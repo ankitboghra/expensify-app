@@ -5,4 +5,14 @@
     font-weight: 300;
     font-size: $font-size-l;
     padding: $size-m;
+
+    // display link as button
+    display: inline-block;
+    line-height: 1;
+    text-decoration: none;
+}
+
+// display button as link
+.button--link {
+    background: none;
 }

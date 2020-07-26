@@ -11,7 +11,7 @@ const Header = ({ startLogout }) => (
                 <Link className="header__title" to="/dashboard" >
                     <h1>Expensify</h1>
                 </Link>
-                <button onClick={startLogout}>LogOut</button>
+                <button className="button button--link" onClick={startLogout}>LogOut</button>
             </div>
         </div>
     </header>
