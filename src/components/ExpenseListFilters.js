@@ -54,6 +54,7 @@ class ExpenseListFilters extends React.Component {
                     showClearDates={true}
                     startDateId="startDateFilter"
                     endDateId="endDateFilter"
+                    displayFormat="DD-MM-YYYY"
                 />
             </div>
         );
