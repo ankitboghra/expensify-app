@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
-import { createStore } from 'redux';
+import InputTags from './InputTags';
 
 class ExpenseForm extends React.Component {
     constructor(props) {
@@ -85,6 +85,7 @@ class ExpenseForm extends React.Component {
                     isOutsideRange={() => false}
                     displayFormat="DD-MM-YYYY"
                 />
+                <InputTags />
                 <textarea
                     className="textarea-input"
                     placeholder="Add a note for your expense (optional)"
