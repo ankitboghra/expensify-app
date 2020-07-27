@@ -6,6 +6,7 @@ import { firebase } from './firebase/firebase';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 import AppRouter, { history } from './routers/AppRouter';
+import LoadingPage from './components/LoadingPage';
 
 import configureStore from './store/configureStore';
 import { startSetExpenses } from './actions/expenses';
@@ -26,7 +27,7 @@ const renderApp = () => {
     }
 };
 
-ReactDOM.render(<p>Loading...</p>, document.getElementById('appRoot'));
+ReactDOM.render(<LoadingPage />, document.getElementById('appRoot'));
 
 firebase.auth().onAuthStateChanged((user) => {
     if(user) {
