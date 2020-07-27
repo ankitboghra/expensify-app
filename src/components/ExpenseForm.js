@@ -12,6 +12,8 @@ class ExpenseForm extends React.Component {
             description: props.expense ? props.expense.description : '',
             note: props.expense ? props.expense.note : '',
             amount: props.expense ? props.expense.amount.toString() : '',
+            tags: props.expense ? props.expense.tags : [],
+            tagInput: props.expense ? props.expense.tagInput : '',
             createdAt: props.expense ? moment(props.expense.createdAt) : moment(),
             calendarFocused: false,
             error: ''
@@ -40,6 +42,27 @@ class ExpenseForm extends React.Component {
     onFocusChange = ({ focused }) => {
         this.setState(() => ({ calendarFocused: focused }));
     };
+    onTagInputKeyDown = (e) => {
+        const val = e.target.value;
+        if (e.key === 'Enter' && val) {
+            e.preventDefault();
+            if (this.state.tags.find(tag => tag.toLowerCase() === val.toLowerCase())) {
+                return;
+            }
+            this.setState({ tags: [...this.state.tags, val] });
+            this.setState({tagInput: ''});
+        } else if (e.key === 'Backspace' && !val) {
+            this.onTagRemove(this.state.tags.length - 1);
+        }
+    };
+    onTagValueChange = (e) => {
+        this.setState({tagInput: e.target.value})
+    }
+    onTagRemove = (i) => {
+        const newTags = [ ...this.state.tags ];
+        newTags.splice(i, 1);
+        this.setState({ tags: newTags });
+    };
     onSubmit = (e) => {
         e.preventDefault();
 
@@ -52,7 +75,8 @@ class ExpenseForm extends React.Component {
                 description: this.state.description,
                 amount: parseFloat(this.state.amount, 10),
                 createdAt: this.state.createdAt.valueOf(),
-                note: this.state.note
+                note: this.state.note,
+                tags: this.state.tags,
             })
         }
     };
@@ -85,7 +109,13 @@ class ExpenseForm extends React.Component {
                     isOutsideRange={() => false}
                     displayFormat="DD-MM-YYYY"
                 />
-                <InputTags />
+                <InputTags
+                    tags={this.state.tags}
+                    onTagInputKeyDown={this.onTagInputKeyDown}
+                    onTagRemove={this.onTagRemove}
+                    tagInput={this.state.tagInput}
+                    onTagValueChange={this.onTagValueChange}
+                />
                 <textarea
                     className="textarea-input"
                     placeholder="Add a note for your expense (optional)"
