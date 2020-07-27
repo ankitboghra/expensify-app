@@ -47,8 +47,8 @@ class ExpenseListFilters extends React.Component {
                                 };
                             }}
                         >
-                            <option value="date">Date</option>
-                            <option value="amount">Amount</option>
+                            <option value="date">Sort by Date</option>
+                            <option value="amount">Sort by Amount</option>
                         </select>
                     </div>
                     <div className="input-group__item">
