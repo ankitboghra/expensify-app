@@ -11,7 +11,7 @@ class InputTag extends React.Component {
         return (
             <div className="input-tag">
                 <ul className="input-tag__tags">
-                    {tags.map((tag, i) => (
+                    {tags && tags.map((tag, i) => (
                         <li key={tag}>
                             {tag}
                             <button

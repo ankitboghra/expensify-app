@@ -4,7 +4,8 @@ const filtersReducerDefaultState = {
     text: '',
     sortBy: 'date',
     startDate: moment().startOf('month'),
-    endDate: moment().endOf('month')
+    endDate: moment().endOf('month'),
+    tag: ''
 };
 
 const filtersReducer = (state = filtersReducerDefaultState, action) => {
@@ -33,6 +34,11 @@ const filtersReducer = (state = filtersReducerDefaultState, action) => {
             return {
                 ...state,
                 endDate: action.endDate
+            };
+        case 'SET_TAG_FILTER':
+            return {
+                ...state,
+                tag: action.tag
             };
         default:
             return state;
