@@ -20,3 +20,8 @@ export const setEndDate = (endDate) => ({
     type: 'SET_END_DATE',
     endDate
 });
+
+export const setTagFilter = (tag = '') => ({
+    type: 'SET_TAG_FILTER',
+    tag
+});

@@ -4,7 +4,8 @@ import { DateRangePicker } from 'react-dates';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 
-import { setTextFilter, sortByDate, sortByAmount, setStartDate, setEndDate } from '../actions/filters';
+import { setTextFilter, sortByDate, sortByAmount, setStartDate, setEndDate, setTagFilter } from '../actions/filters';
+import getTags from "../selectors/tags";
 
 class ExpenseListFilters extends React.Component {
     state = {
@@ -67,6 +68,26 @@ class ExpenseListFilters extends React.Component {
                         />
                     </div>
                 </div>
+                <div className="input-group">
+                    <div className="input-group__item">
+                        <select
+                            className="select-input"
+                            value={this.props.filters.tag}
+                            onChange={(e) => {
+                                this.props.dispatch(setTagFilter(e.target.value));
+                            }}
+                        >
+                            <option value="">No Tag</option>
+                            {
+                                this.props.tags.length !== 0
+                                &&
+                                    this.props.tags.map(tag => (
+                                        <option value={tag}>{tag}</option>
+                                    ))
+                            }
+                        </select>
+                    </div>
+                </div>
             </div>
         );
     }
@@ -74,7 +95,8 @@ class ExpenseListFilters extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        filters: state.filters
+        filters: state.filters,
+        tags: getTags(state.expenses)
     }
 }
 export default connect(mapStateToProps)(ExpenseListFilters);
