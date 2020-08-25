@@ -21,6 +21,7 @@
             "amount": {
               ".validate": "newData.isString()"
             },
+            "tags" : {},
             "other": {
               ".validate": false
             }
