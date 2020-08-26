@@ -5,31 +5,21 @@
     "users": {
       "$user_id": {
         ".read": "$user_id === auth.uid",
-    		".write":"$user_id === auth.uid",
+        ".write": "$user_id === auth.uid",
         "expenses": {
-					"$expense_id": {
+          "$expense_id": {
             ".validate": "newData.hasChildren(['description', 'note', 'createdAt', 'amount'])",
-            "description": {
-              ".validate": "newData.isString() && newData.val().length > 0"
-            },
-            "note": {
-              ".validate": "newData.isString()"
-            },
-            "createdAt": {
-              ".validate": "newData.isString()"
-            },
-            "amount": {
-              ".validate": "newData.isString()"
-            },
-            "tags" : {},
-            "other": {
-              ".validate": false
-            }
-          }
-        },
-        "other": {
-              ".validate": false
+            "description": {".validate": "newData.isString() && newData.val().length > 0"},
+            "note": {".validate": "newData.isString()"},
+            "createdAt": {".validate": "newData.isNumber()"},
+            "amount": {".validate": "newData.isNumber()"},
+            "tags": {".validate": "true"},
+            "$other": {".validate": false}
         }
+      	},
+       "$other": {
+	  			".validate": false
+  			}
       }
     }
   }
