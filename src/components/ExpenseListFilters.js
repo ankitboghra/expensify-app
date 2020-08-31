@@ -82,7 +82,7 @@ class ExpenseListFilters extends React.Component {
                                 this.props.tags.length !== 0
                                 &&
                                     this.props.tags.map(tag => (
-                                        <option value={tag}>{tag}</option>
+                                        <option key={tag} value={tag}>{tag}</option>
                                     ))
                             }
                         </select>
