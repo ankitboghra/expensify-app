@@ -1,9 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
+
 import InputTags from './InputTags';
+import getTags from "../selectors/tags";
 
 class ExpenseForm extends React.Component {
     constructor(props) {
@@ -115,6 +118,7 @@ class ExpenseForm extends React.Component {
                     onTagRemove={this.onTagRemove}
                     tagInput={this.state.tagInput}
                     onTagValueChange={this.onTagValueChange}
+                    dataList={this.props.tagsList}
                 />
                 <textarea
                     className="textarea-input"
@@ -130,4 +134,9 @@ class ExpenseForm extends React.Component {
     }
 };
 
-export default ExpenseForm;
+const mapStateToProps = (state) => {
+    return {
+        tagsList: getTags(state.expenses).sort()
+    }
+}
+export default connect(mapStateToProps)(ExpenseForm);

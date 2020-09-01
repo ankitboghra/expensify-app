@@ -27,9 +27,16 @@ class InputTag extends React.Component {
                             placeholder="Tags"
                             onChange={this.props.onTagValueChange}
                             onKeyDown={this.props.onTagInputKeyDown}
-                            value={this.props.tagInput} />
+                            value={this.props.tagInput}
+                            list="tags-data-list" />
                     </li>
                 </ul>
+                {
+                    this.props.dataList && 
+                    <datalist id="tags-data-list">
+                        {this.props.dataList.map(tag => <option key={`dl-${tag}`}>{tag}</option>)}
+                    </datalist>
+                }
             </div>
         );
     }
