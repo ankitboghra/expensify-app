@@ -96,7 +96,7 @@ class ExpenseListFilters extends React.Component {
 const mapStateToProps = (state) => {
     return {
         filters: state.filters,
-        tags: getTags(state.expenses)
+        tags: getTags(state.expenses).sort()
     }
 }
 export default connect(mapStateToProps)(ExpenseListFilters);
